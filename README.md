@@ -25,28 +25,27 @@
         Input( type- JSON ):\
         \
 ``` js
-{ 
- "bankmoney": 14000.2132, 
- "bankno": "", 
- "bankpin": "", 
- "transaction": "", 
- "receiveraccount": null 
-  }
+    { 
+     "bankmoney": 14000.2132, 
+     "bankno": "", 
+     "bankpin": "", 
+     "transaction": "", 
+     "receiveraccount": null 
+     }
 ```      
 5. path: "/update"  \
         request "PUT" \
         Input( type- JSON ): Required id is must and others value for update is optional. But update field required must \
         \
- ``` json
-
- { 
- "id": //required id, \
-"bankmoney": //, 
-"bankno": "", 
-"bankpin": "", 
-"transaction": "", 
-"receiveraccount": null \
-} 
+ ``` js
+     { 
+      "id": anythiing //required id, 
+      "bankmoney": anything,  // type double 
+      "bankno": "Null or Anything ", 
+      "bankpin": "Null or Anything ", 
+      "transaction": "Null or Anything ", 
+      "receiveraccount": Null or Anything  
+    } 
 ```   
 7. path: "/payment"  \
         request "PUT" \
@@ -54,12 +53,12 @@
         Output( type- string ): \
         input:     \
         \
-  ``` json.5
-{ 
-"bankno": //must ex:b1111/b2222/... 
-"bankpin": /must ex:1234 
-"transaction": ///must (Invoice bill goes here) (type doube) 
-"receiveraccount": //must ex: (wholeseller account goes here) 
-}
+  ``` js
+     { 
+     "bankno": "Valid Bank No From Database" //must ex:b1111/b2222/... 
+     "bankpin": "Valid Bank PIn No From Database" /must ex:1234 
+     "transaction":  ///must (Invoice bill goes here) (type doube) 
+     "receiveraccount": //must ex: (wholeseller account goes here) 
+     }
 ```  
        
