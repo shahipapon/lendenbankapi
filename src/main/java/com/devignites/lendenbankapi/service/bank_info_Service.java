@@ -14,9 +14,6 @@ import java.util.List;
 public class bank_info_Service {
 
     private Logger logger = LoggerFactory.getLogger((this.getClass()));
-    private error errorobj;
-
-    private String x;
 
     @Autowired
     private bank_info_Repository repository;
@@ -35,18 +32,13 @@ public class bank_info_Service {
 
     //get data by bankname
     public bank_info getInfoByName(String name) {
-        // this will return optional. if id found return result else null.
-        //or use the optional return type.
-
         //custom query. The prefix should "findBy" postfix should "col nam"e from table.
         // But for custom query we need add method to repository.
         return repository.findBybankno(name);
     }
 
+    //validate bank user
     public bank_info getInfoByNameAndPass(String pass, String no) {
-        // this will return optional. if id found return result else null.
-        //or use the optional return type.
-
         //custom query. The prefix should "findBy" postfix should "col nam"e from table.
         // But for custom query we need add method to repository.
         return repository.findBybankpinAndbankno(pass, no);
@@ -57,49 +49,66 @@ public class bank_info_Service {
         return repository.save(bankInfoObj);
     }
 
-    //save all
+    //update bank info //need id
+    public bank_info update(bank_info bankInfoObj) {
+        bank_info existaccount = repository.findById(bankInfoObj.getId()).orElse(null); //check is there anything or not.
+        existaccount.setBankmoney(bankInfoObj.getBankmoney());
+        return repository.save(existaccount);
+    }
+
+    //save list
     public List<bank_info> saveAll(List<bank_info> bankInfoObjs) {
         return repository.saveAll(bankInfoObjs);
     }
 
     //update
-    public String updateInfo(bank_info bankInfoObj) {
+    public String payment(bank_info bankInfoObj) {
 
-//        bank_info existingInfo = repository.findById(bankInfoObj.getId()).orElse(null); //check is there anything or not.
+        String result = "";
+//        bank_info senderInfo = repository.findById(bankInfoObj.getId()).orElse(null); //check is there anything or not.
 
-        bank_info existingInfo = repository.findBybankpinAndbankno(bankInfoObj.getBankpin(), bankInfoObj.getBankno());
+        //confirm user
+        //Get sender data from request
+        bank_info senderInfo = repository.findBybankpinAndbankno(bankInfoObj.getBankpin(), bankInfoObj.getBankno());
 
-       Double currentBalance = Double.valueOf(existingInfo.getBankmoney().toString());
-       Double withdraBalance = Double.valueOf(bankInfoObj.getBankmoney().toString());
+        // getreceiver info from request (bankno only)
+        //get receiver data from database by name
+        bank_info receiverInfo = repository.findBybankno(bankInfoObj.getReceiveraccount());
 
-        System.out.println("currentBalance " + currentBalance);
-        System.out.println("withdraBalance " + withdraBalance);
+//        logger.info("Sender's Info >>  {}",senderInfo);
+//        logger.info("Receiver's Info >>  {}",receiverInfo);
 
-        //System.out.println("exits account 2>> " + existingInfo1);
+        Double senderCurrentBalance = Double.valueOf(senderInfo.getBankmoney().toString());
+        Double receiverCurrentBalance = Double.valueOf(receiverInfo.getBankmoney().toString());
+        Double withdraBalance = Double.valueOf(bankInfoObj.getTransaction().toString());
 
-//        System.out.println("Orginal account>> " + existingInfo.getBankmoney().toString());
-//        //Orginal account bank_info(id=1, bankmoney=900.99, bankno=b1111, bankpin=1234, transactionaccount=gsd94d83b1c1cc8248994d83b1)
-//        // String xx = bankInfoObj.getBankmoney().toString();
-//        System.out.println("abal deposit : " + bankInfoObj.getBankmoney().toString());
-//        System.out.println("abal transiction : " + transiction);
-        calculate();
+        if ((senderCurrentBalance - withdraBalance) < 0) {
+            result = "Not Enough Balance. \nCurrent balance is: " + receiverCurrentBalance.toString();
+        } else {
+            //sender bank update
+            //senderInfo //contain  sender data
+            //set information for update ..need id
+            senderInfo.setId(senderInfo.getId());
+            senderInfo.setBankmoney(senderCurrentBalance - withdraBalance);
+            repository.save(senderInfo);
+
+            //receiver bank update
+            // bankInfoObj //contain receiver data
+            //set information ..need id
+            receiverInfo.setId(receiverInfo.getId());
+            receiverInfo.setBankmoney(receiverCurrentBalance + withdraBalance);
+            repository.save(receiverInfo);
+
+            result = "Success";
+        }
+        // calculate();
 //        //fill as your need
-//        existingInfo.setBankmoney(bankInfoObj.getBankmoney());
-        //return repository.save(existingInfo);
-        System.out.println(errorobj.getError_massage());
-        return errorobj.getError_massage();
+//        senderInfo.setBankmoney(bankInfoObj.getBankmoney());
+        //return repository.save(senderInfo);
+        return result;
     }
 
     void calculate() {
-        x = "DSadadsa";
-//        System.out.println("hello lenden "+x);
-//        x="dasda";
-//        System.out.println("hello lenden "+x);
-
-        x = "DSadadsa";
-        System.out.println("hello lenden " + x);
-        x = "dasda";
-        System.out.println("hello lenden " + x);
     }
 
 }

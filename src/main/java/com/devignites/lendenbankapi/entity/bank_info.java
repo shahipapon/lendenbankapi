@@ -22,7 +22,8 @@ public class bank_info {
     private Double bankmoney;
     private String bankno;
     private String bankpin;
-    private String transactionaccount;
+    private String transaction;
+    private String receiveraccount;
 
 
 }

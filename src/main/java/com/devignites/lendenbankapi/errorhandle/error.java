@@ -15,10 +15,14 @@ public class error {
 
             '}';
 
-    public String myerror() {
-        return "ErrorLog{" +
-                "error_massage='" + "Not Enough Balance" + '\'' +
+    private String bal = "{" + "error" + ": "+ "Not Enough Balance } " ;
 
+
+    public String toString() {
+        return "bankInfo{" +
+                "bankNo='" + "bankNo" + '\'' +
+                ", bankPin='" + "bankPin" + '\'' +
+                ", bankMoney='" + "bankMoney" + '\'' +
                 '}';
     }
 

@@ -16,32 +16,41 @@ public class bank_info_controller {
 
     private Logger logger = LoggerFactory.getLogger((this.getClass()));
 
-
-//    public bank_info addpro(bank_info bank_info_obj){
-//        return service.saveInfo(bank_info_obj);
-//    }
-
     @GetMapping("/")
-    public List<bank_info> getAll(){
+    public String dummy() {
+        return "Oops! Missing Something...";
+    }
+
+    @GetMapping("/giveall")
+    public List<bank_info> getAll() {
         return service.getInfo();
     }
 
     @GetMapping("/info/{id}")
-    public bank_info getInfoById(@PathVariable int id){
+    public bank_info getInfoById(@PathVariable int id) {
         return service.getInfoById(id);
     }
 
     @GetMapping("/bank/{name}")
-    public bank_info getInfoByName(@PathVariable String name){
+    public bank_info getInfoByName(@PathVariable String name) {
         return service.getInfoByName(name);
     }
 
+    @PostMapping("/addbank")
+    public bank_info addnewbank(@RequestBody bank_info bank_info_obj) {
+        return service.saveInfo(bank_info_obj);
+
+    }
 
 
     @PutMapping("/update")
-    public String update(@RequestBody bank_info bank_info_obj){
-        return service.updateInfo(bank_info_obj);
+    public bank_info update(@RequestBody bank_info bank_info_obj) {
+        return service.update(bank_info_obj);
     }
 
+    @PutMapping("/payment")
+    public String payment(@RequestBody bank_info bank_info_obj) {
+        return service.payment(bank_info_obj);
+    }
 
 }
