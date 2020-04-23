@@ -3,8 +3,8 @@
  
 **All endpoints**
 1. path: "/"
-        request "GET" 
-        Output:  Dummy Text
+        -request "GET" 
+        -Output:  Dummy Text
 
 2. path: "/giveall" 
         request "GET"
