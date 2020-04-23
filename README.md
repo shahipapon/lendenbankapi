@@ -3,15 +3,15 @@
  
 **All endpoints**
 1. path: "/"
-        -request "GET" 
-        -Output:  Dummy Text
+request "GET" 
+Output:  Dummy Text
 
 2. path: "/giveall" 
-        request "GET"
-        Output:  Check all Data  
+request "GET"
+Output:  Check all Data  
 
 3. path: "/info/{id}" 
-        request "GET"
+    request "GET"
         Input: htttps://..../info/1
         Output:  Check Bank Info By Id(1,2,3...)
  
