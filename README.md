@@ -52,7 +52,6 @@
       request "PUT" 
       Input( type- JSON ):
       Output( type- string ):
-
        input:     
        {
         "bankno": //must ex:b1111/b2222/...
