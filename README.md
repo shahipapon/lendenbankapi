@@ -2,8 +2,8 @@
  lenden payment gateway (testing purpose)
  
 **All endpoints**
-1. path: "/"
-request "GET" 
+1. path: "/" \
+request "GET" /
 Output:  Dummy Text
 
 2. path: "/giveall" 
