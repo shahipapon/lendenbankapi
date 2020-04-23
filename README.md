@@ -3,7 +3,7 @@
  
 **All endpoints**
 1. path: "/" \
-request "GET" /
+   request "GET" /
 Output:  Dummy Text
 
 2. path: "/giveall" 
