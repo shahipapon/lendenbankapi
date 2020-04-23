@@ -1,7 +1,7 @@
 # lendenbankapi
  lenden payment gateway (testing purpose)
  
-**All endpoints**
+##All endpoints##
 1. path: "/" \
    request "GET" \
    Output:  Dummy Text
