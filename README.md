@@ -1,5 +1,6 @@
 # lendenbankapi
  lenden payment gateway (testing purpose)
+ access URL: http://lendenrestapi.herokuapp.com/
 
 # All endpoints
 1. **path: "/"**  \
