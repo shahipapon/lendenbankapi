@@ -27,10 +27,10 @@
 ``` js
     { 
       "bankmoney": 14000.2132, 
-      "bankno": "", 
-      "bankpin": "", 
-      "transaction": "", 
-      "receiveraccount": null 
+      "bankno": "", //any
+      "bankpin": "", //any
+      "transaction": "", //can be ""
+      "receiveraccount": "" //can be ""
      }
 ```      
 5. **path: "/update"**  \
@@ -40,7 +40,7 @@
  ``` js
      { 
        "id": anythiing //required id, 
-       "bankmoney": anything,  // type double 
+       "bankmoney": anything,  // type double //only money will be updated
        "bankno": "Null or Anything ", 
        "bankpin": "Null or Anything ", 
        "transaction": "Null or Anything ", 
