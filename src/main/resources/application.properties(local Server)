@@ -1,8 +1,8 @@
 
 spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:mysql://103.48.119.247/beatthe1_papon
-spring.datasource.username=beatthe1_papon
-spring.datasource.password=)INc1.N&iDBT
+spring.datasource.url=jdbc:mysql://localhost:3306/Lenden_Fake_Api
+spring.datasource.username=root
+spring.datasource.password=
 
 #spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
 #spring.jpa.show-sql = true
