@@ -104,7 +104,7 @@ public class bank_info_Service {
             Double withdraBalance = Double.valueOf(bankInfoObj.getTransaction().toString());
 
             if ((senderCurrentBalance - withdraBalance) < 0) {
-                result = "Not Enough Balance. \nCurrent balance is: " + receiverCurrentBalance.toString();
+                result = "Not Enough Balance. \nCurrent balance is: " + senderCurrentBalance.toString();
             } else {
                 //sender bank update
                 //senderInfo //contain  sender data
